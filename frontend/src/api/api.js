@@ -6,7 +6,11 @@ const api = axios.create({
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('cms_token');
-  if (token) config.headers.Authorization = `Bearer ${token}`;
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
   return config;
 });
 
@@ -17,11 +21,15 @@ api.interceptors.response.use(
       localStorage.removeItem('cms_token');
       localStorage.removeItem('cms_user');
     }
+
     return Promise.reject(error);
   }
 );
 
 export const getErrorMessage = (error) =>
-  error.response?.data?.message || error.response?.data?.errors?.[0]?.message || error.message || 'Something went wrong';
+  error.response?.data?.message ||
+  error.response?.data?.errors?.[0]?.message ||
+  error.message ||
+  'Something went wrong';
 
 export default api;
