@@ -8,9 +8,14 @@
     "server": "npm --prefix backend run dev",
     "client": "npm --prefix frontend start",
     "dev": "concurrently \"npm --prefix backend run dev\" \"npm --prefix frontend start\"",
-    "seed": "npm --prefix backend run seed"
+    "seed": "npm --prefix backend run seed",
+    "start": "npm --prefix backend start",
+    "build": "npm run install:all && npm --prefix frontend run build"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
